@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or "Título por defecto" }}</title>
+  </head>
+  <body>
+    <header>
+      <h1>Mi Fantástica Web</h1>
+      <nav>
+        <a href="/">Inicio</a>
+        </nav>
+    </header>
+
+    <main>
+      {{ content | safe }} {# Aquí se insertará el contenido de cada página (como el de index.md) #}
+    </main>
+
+    <footer>
+      <p>&copy; {{ '{% year %}' | date('yyyy') }} Mi Nombre</p>
+    </footer>
+  </body>
+</html>

@@ -8,33 +8,198 @@ backend:
 media_folder: "static/img/uploads" # Carpeta en tu repositorio donde se subirán las imágenes
 public_folder: "/img/uploads" # Ruta pública para acceder a las imágenes en tu sitio
 
-# Definición de tus colecciones de contenido (Diario, Recetas, Proyectos, etc.)
+# Definición de tus colecciones de contenido
 collections:
-  # Aquí definiremos cada tipo de contenido en los siguientes pasos
-  [# Configuración de conexión con GitHub a través de Netlify Identity
-backend:
-  name: git-gateway # Usar Git Gateway de Netlify Identity
-  branch: main # La rama principal de tu repositorio en GitHub
-  identity_url: https://spiffy-duckanoo-517443.netlify.app/.netlify/identity # URL de Netlify Identity
+  - name: "diary"
+    label: "Entradas del Diario"
+    folder: "diario"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Título"
+        name: "title"
+        widget: "string"
+      - label: "Fecha"
+        name: "date"
+        widget: "datetime"
+      - label: "Contenido"
+        name: "body"
+        widget: "markdown"
 
-# Dónde se guardarán las imágenes y archivos subidos a través del CMS
-media_folder: "static/img/uploads" # Carpeta en tu repositorio donde se subirán las imágenes
-public_folder: "/img/uploads" # Ruta pública para acceder a las imágenes en tu sitio
+  - name: "recipes"
+    label: "Recetas de Cocina"
+    folder: "recetas"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Título"
+        name: "title"
+        widget: "string"
+      - label: "Descripción"
+        name: "description"
+        widget: "markdown"
+      - label: "Imagen Principal"
+        name: "image"
+        widget: "image"
+      - label: "Ingredientes"
+        name: "ingredients"
+        widget: "list"
+        field:
+          label: "Ingrediente"
+          name: "ingredient"
+          widget: "string"
+      - label: "Instrucciones"
+        name: "instructions"
+        widget: "markdown"
 
-# Definición de tus colecciones de contenido (Diario, Recetas, Proyectos, etc.)
-collections:
-  - name: "diary" # Nombre interno para esta colección (sin espacios, solo minúsculas, etc.)
-    label: "Entradas del Diario" # Etiqueta visible en el panel del CMS
-    folder: "diario" # Carpeta en tu repositorio donde se guardarán las entradas del diario (Ej: mi-web-personal/diario/)
-    create: true # Permite crear nuevas entradas en esta colección
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Define el formato del nombre de archivo (Ej: 2025-04-18-mi-entrada-del-dia.md)
-    fields: # Los campos que tendrá cada entrada del diario
-      - label: "Título" # Etiqueta visible para el campo en el CMS
-        name: "title" # Nombre interno del campo (usado en el Front Matter de los archivos)
-        widget: "string" # Tipo de widget en el CMS (campo de texto corto)
-      - label: "Fecha" # Etiqueta para el campo de fecha
-        name: "date" # Nombre interno del campo
-        widget: "datetime" # Widget de fecha y hora
-      - label: "Contenido" # Etiqueta para el cuerpo de la entrada
-        name: "body" # Nombre interno del campo (usualmente para el contenido principal del archivo)
-        widget: "markdown" # Widget de edición de texto largo con formato Markdown]
+  - name: "projects"
+    label: "Mis Proyectos"
+    folder: "proyectos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Título del Proyecto"
+        name: "title"
+        widget: "string"
+      - label: "Descripción Breve"
+        name: "description"
+        widget: "text"
+      - label: "Contenido Completo"
+        name: "body"
+        widget: "markdown"
+      - label: "Enlace al Proyecto"
+        name: "link"
+        widget: "string"
+        required: false
+      - label: "Imagen Principal"
+        name: "image"
+        widget: "image"
+        required: false
+      - label: "Tecnologías/Etiquetas"
+        name: "tags"
+        widget: "list"
+        field:
+          label: "Etiqueta"
+          name: "tag"
+          widget: "string"
+        required: false
+
+  - name: "gym"
+    label: "Entrenamientos (Gimnasio)"
+    folder: "gimnasio"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Fecha del Entrenamiento"
+        name: "date"
+        widget: "datetime"
+      - label: "Tipo de Entrenamiento"
+        name: "workout_type"
+        widget: "string"
+      - label: "Duración (minutos)"
+        name: "duration"
+        widget: "number"
+        required: false
+      - label: "Ejercicios y Detalles"
+        name: "exercises_details"
+        widget: "markdown"
+      - label: "Notas Adicionales"
+        name: "notes"
+        widget: "text"
+        required: false
+
+  - name: "skinclear"
+    label: "Seguimiento Skincare"
+    folder: "skincare"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Fecha del Seguimiento"
+        name: "date"
+        widget: "datetime"
+      - label: "Productos y Uso"
+        name: "products_usage"
+        widget: "markdown"
+      - label: "Observaciones y Notas"
+        name: "notes"
+        widget: "text"
+        required: false
+      - label: "Imagen (Opcional)"
+        name: "image"
+        widget: "image"
+        required: false
+
+  - name: "books"
+    label: "Mis Libros"
+    folder: "libros"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Título del Libro"
+        name: "title"
+        widget: "string"
+      - label: "Autor(es)"
+        name: "author"
+        widget: "string"
+      - label: "Año de Publicación"
+        name: "year"
+        widget: "number"
+        required: false
+      - label: "Género(s)"
+        name: "genres"
+        widget: "list"
+        field:
+          label: "Género"
+          name: "genre"
+          widget: "string"
+        required: false
+      - label: "Mi Calificación"
+        name: "rating"
+        widget: "number"
+        required: false
+      - label: "Notas y Reseña"
+        name: "review"
+        widget: "markdown"
+        required: false # Aquí también puede ser required: false si la reseña no es obligatoria
+      - label: "Imagen de Portada (Opcional)"
+        name: "cover_image"
+        widget: "image"
+        required: false
+
+  - name: "movies-series"
+    label: "Películas y Series"
+    folder: "peliculas-series"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Título"
+        name: "title"
+        widget: "string"
+      - label: "Tipo"
+        name: "type"
+        widget: "select"
+        options: ["Película", "Serie"]
+      - label: "Año de Estreno"
+        name: "year"
+        widget: "number"
+        required: false
+      - label: "Género(s)"
+        name: "genres"
+        widget: "list"
+        field:
+          label: "Género"
+          name: "genre"
+          widget: "string"
+        required: false
+      - label: "Mi Calificación"
+        name: "rating"
+        widget: "number"
+        required: false
+      - label: "Notas y Comentarios"
+        name: "review"
+        widget: "markdown"
+        required: false # Aquí también puede ser required: false si la reseña/comentario no es obligatoria
+      - label: "Imagen de Portada/Póster (Opcional)"
+        name: "cover_image"
+        widget: "image"
+        required: false

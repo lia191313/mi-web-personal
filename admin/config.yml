@@ -1,0 +1,40 @@
+# Configuración de conexión con GitHub a través de Netlify Identity
+backend:
+  name: git-gateway # Usar Git Gateway de Netlify Identity
+  branch: main # La rama principal de tu repositorio en GitHub
+  identity_url: https://spiffy-duckanoo-517443.netlify.app/.netlify/identity # URL de Netlify Identity
+
+# Dónde se guardarán las imágenes y archivos subidos a través del CMS
+media_folder: "static/img/uploads" # Carpeta en tu repositorio donde se subirán las imágenes
+public_folder: "/img/uploads" # Ruta pública para acceder a las imágenes en tu sitio
+
+# Definición de tus colecciones de contenido (Diario, Recetas, Proyectos, etc.)
+collections:
+  # Aquí definiremos cada tipo de contenido en los siguientes pasos
+  [# Configuración de conexión con GitHub a través de Netlify Identity
+backend:
+  name: git-gateway # Usar Git Gateway de Netlify Identity
+  branch: main # La rama principal de tu repositorio en GitHub
+  identity_url: https://spiffy-duckanoo-517443.netlify.app/.netlify/identity # URL de Netlify Identity
+
+# Dónde se guardarán las imágenes y archivos subidos a través del CMS
+media_folder: "static/img/uploads" # Carpeta en tu repositorio donde se subirán las imágenes
+public_folder: "/img/uploads" # Ruta pública para acceder a las imágenes en tu sitio
+
+# Definición de tus colecciones de contenido (Diario, Recetas, Proyectos, etc.)
+collections:
+  - name: "diary" # Nombre interno para esta colección (sin espacios, solo minúsculas, etc.)
+    label: "Entradas del Diario" # Etiqueta visible en el panel del CMS
+    folder: "diario" # Carpeta en tu repositorio donde se guardarán las entradas del diario (Ej: mi-web-personal/diario/)
+    create: true # Permite crear nuevas entradas en esta colección
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Define el formato del nombre de archivo (Ej: 2025-04-18-mi-entrada-del-dia.md)
+    fields: # Los campos que tendrá cada entrada del diario
+      - label: "Título" # Etiqueta visible para el campo en el CMS
+        name: "title" # Nombre interno del campo (usado en el Front Matter de los archivos)
+        widget: "string" # Tipo de widget en el CMS (campo de texto corto)
+      - label: "Fecha" # Etiqueta para el campo de fecha
+        name: "date" # Nombre interno del campo
+        widget: "datetime" # Widget de fecha y hora
+      - label: "Contenido" # Etiqueta para el cuerpo de la entrada
+        name: "body" # Nombre interno del campo (usualmente para el contenido principal del archivo)
+        widget: "markdown" # Widget de edición de texto largo con formato Markdown]

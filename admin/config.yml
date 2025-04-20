@@ -1,8 +1,9 @@
 # Configuración de conexión con GitHub a través de Netlify
 backend:
-  name: git-gateway # Usar Git Gateway de Netlify (ahora usará el proveedor OAuth configurado)
+  name: git-gateway # Usar Git Gateway de Netlify
   branch: main # La rama principal de tu repositorio en GitHub
-  # ¡Hemos eliminado la línea identity_url obsoleta!
+  # Añadido para forzar el uso de GitHub OAuth
+  auth_type: github
 
 # Dónde se guardarán las imágenes y archivos subidos a través del CMS
 media_folder: "static/img/uploads"

@@ -5,6 +5,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("img");
 
+  // *** AÑADE ESTA LÍNEA para copiar la carpeta admin completa ***
+  eleventyConfig.addPassthroughCopy("admin");
+
   // Configuración para plantillas
   return {
     // Directorios
